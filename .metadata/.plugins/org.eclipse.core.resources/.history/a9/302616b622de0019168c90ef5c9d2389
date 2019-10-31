@@ -1,0 +1,89 @@
+package leitor;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.SocketTimeoutException;
+
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
+public class TESTE_digo {
+
+	public static void main(String[] args) throws IOException {
+
+		// Abrir um arquivo
+
+		FileReader arquivo = new FileReader("arquivo.txt");
+		BufferedReader leitura = new BufferedReader(arquivo);
+
+		String line = leitura.readLine();
+		String linha;
+
+		float soma = 0;
+		int linhaGravidade = 0;
+
+		int i = Integer.parseInt((line.split(" "))[0]);
+		int j = Integer.parseInt((line.split(" "))[1]);
+
+		String[][] matriz = new String[i][j];
+		for (int x = 0; x < i; x++) {
+			linha = leitura.readLine();
+			for (int y = 0; y < j; y++) {
+				matriz[x][y] = linha.split(" ")[y];
+				System.out.printf("matriz[%d][%d]: %s\n", x, y, matriz[x][y]);
+			}
+		}
+		leitura.close();
+
+//		for (int x = 0; x < i; x++) {
+//			if (x == 0 || x == matriz.length - 1) {
+//				
+//				System.out.printf("indice invalido  ");
+//				System.out.printf("matriz[%d][-]\n", x);
+//			} else {
+//				for (int y = 0; y < j; y++) {
+//					float somaAtual = soma(x, i, j, matriz);
+//					System.out.println("soma= " + somaAtual);
+//					if (somaAtual > soma) {
+//						linhaGravidade = x;
+//						soma = somaAtual;
+//					}
+//				}
+//			}
+//		}
+
+		for (int x = 0; x < i; x++) {
+			if (x == 0 || x == matriz.length - 1) {
+				System.out.printf("indice invalido  ");
+				System.out.printf("matriz[%d][-]\n", x);
+			} else {
+				float somaAtual = soma(x, i, j, matriz);
+				System.out.println("X VALENDO " + x);
+				System.out.println("soma= " + somaAtual);
+				if (somaAtual > soma) {
+					linhaGravidade = x;
+					soma = somaAtual;
+				}
+
+			}
+		}
+		System.out.println(linhaGravidade);
+
+	}
+
+	public static float soma(int linha, int i, int j, String[][] matriz) {
+		float soma = 0;
+		for (int x = 0; x < i; x++) {
+			if (x != linha) {
+				for (int y = 0; y < j; y++) {
+					if (x < linha) {
+						soma -= Float.parseFloat(matriz[x][y]);
+					} else {
+						soma += Float.parseFloat(matriz[x][y]);
+					}
+				}
+			}
+		}
+		return soma;
+	}
+}

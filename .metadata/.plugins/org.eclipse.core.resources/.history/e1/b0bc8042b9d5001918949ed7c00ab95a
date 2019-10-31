@@ -1,0 +1,28 @@
+package leitor;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class Leitor {
+
+	public static void main(String[] args) throws IOException {
+		
+		//Abrir um arquivo
+		
+		FileReader arquivo = new FileReader("arquivo.txt");
+		BufferedReader leitura = new BufferedReader(arquivo);
+		
+		String linha = leitura.readLine();
+		if(linha != null) {
+			System.out.println(linha);
+		}
+		
+		
+		System.out.println(linha);
+		
+		
+
+	}
+
+}

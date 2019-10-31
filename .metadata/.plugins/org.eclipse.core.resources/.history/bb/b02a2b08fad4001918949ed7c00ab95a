@@ -1,0 +1,23 @@
+package leitor;
+
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+
+
+public class Leitor {
+
+	public static void main(String[] args) {
+		
+		try {
+			FileOutputStream arquivo = new FileOutputStream("arquivo.txt");
+
+			
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+
+	}
+
+}
